@@ -12,9 +12,15 @@ Finalmente, o app Cart pode ainda fazer requisições HTTP para receber dados de
 
 <br />
 
-#### React Project (the 15 Projects) - Freecodecamp.org
+Dependências:
 
-Conjunto de projetos de frontend inspirados na apresentação do professor **Johm Smilga** para aprofundar no conhecimento do framework React-JS e JavaScript. [^1]
+- Styled-components
+- React-router-dom
+- Redux
+- React-redux
+- Axios
+
+
 
 <br />
 
