@@ -1,24 +1,35 @@
 // https://www.youtube.com/watch?v=0W6i5LYKCSI
 //  0hs  20'  20''
 import { useState } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 // styles
-import './App.css'; 
+//import './App.css'; 
 
 // components
-//import Navbar from './components/Navbar';
 import Header from './containers/Header';
+import ProductList from './containers/ProductList';
+import ProductDetail from './containers/ProductDetail';
+import Error from './components/Error';
+
 
 
 
 function App() {
-	
+	 
 	
 
-
+ 
   return (
     <div className="app">
-			<Header />
+			<Router>
+				<Header />
+				<Routes>
+					<Route path="/" element={<ProductList />} />
+					<Route path="/product/:productId" element={<ProductDetail />} />
+					<Route path="*" element={<Error />} />
+				</Routes>
+			</Router>
 		</div>
   );
 }
