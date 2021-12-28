@@ -36,16 +36,64 @@ Abaixo temos o sistema de pastas para os componentes do Redux:
 ./src
 	./redux
 		./actions
+			productActions.js
 		./constants
 		./reducers
 		store.js
 ```
 
-</br />
+<br />
+
+Agora, cariando um módulo com constantes para definir os tipos de actions aceitas. No caso temos 03:
+
+<br />
+
+```
+export const ActionTypes = {
+	SET_PRODUCTS = 'SET_PRODUCTS',
+	SELECTED_PRODUCT: 'SELECTED_PRODUCT',
+	REMOVE_SELECTED_PRODUCT: 'REMOVE_SELECTED_PRODUCT'
+}; 
+```
+
+<br />
+
+Aqui, a definição das actions para este app:
+
+- Set Products: renderiza produtos 
+- Selected Products: produto selecionado pelo usuário
+- Remove Selected Product: para retirar do carrinho produtos discartados
+
+
+<br />
+
+```
+import { ActionTypes } from '../constants/action-types';
+
+export const setProducts = (products) => {
+	return  {
+		type: ActionTypes.SET_PRODUCTS,
+		payload: products,
+	};
+};
+
+export const selectedProduct = (product) => {
+	return {
+		type: ActionTypes.SELECTED_PRODUCT,
+		payload: product,
+	};
+};
+```
+
+
+<br />
 
 ### I:
 
 ![Imagem do app Cart mostrando o carrinho de compra esvaziado dos itens](/public/images/)
+
+
+
 
 
 
