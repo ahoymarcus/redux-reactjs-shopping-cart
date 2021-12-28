@@ -32,15 +32,17 @@ Abaixo temos o sistema de pastas para os componentes do Redux:
 
 <br />
 
-```
+
 ./src
 	./redux
 		./actions
 			productActions.js
 		./constants
 		./reducers
+			index.js
+			productReducer.js
 		store.js
-```
+
 
 <br />
 
