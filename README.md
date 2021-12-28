@@ -35,13 +35,13 @@ Conjunto de projetos de frontend inspirados na apresentação do professor **Joh
 
 <br />
 
-Agora, criando um módulo com constantes para definir os tipos de actions aceitas. No caso temos 03:
+Agora, criando um módulo com constantes para definir os tipos de actions aceitas para o reducer de produtos. No caso temos 03:
 
 <br />
 
 ```
 export const ActionTypes = {
-	SET_PRODUCTS = 'SET_PRODUCTS',
+	SET_PRODUCTS: 'SET_PRODUCTS',
 	SELECTED_PRODUCT: 'SELECTED_PRODUCT',
 	REMOVE_SELECTED_PRODUCT: 'REMOVE_SELECTED_PRODUCT'
 }; 
@@ -78,7 +78,7 @@ export const selectedProduct = (product) => {
 
 <br />
 
-Definindo um reducer individualmente:
+Definindo um reducer individualmente, no caso o reducer para produtos:
 
 ```
 import { ActionTypes } from '../constants/action-types';
@@ -97,12 +97,6 @@ export const productReducer = (state = initialState, {type, payload }) => {
 	switch (type) {
 		case ActionTypes.SET_PRODUCTS:
 			return state;
-		case SELECTED_PRODUCT:
-		
-			break;
-		case REMOVE_SELECTED_PRODUCT:
-		
-			break;
 		default:
 			return state;
 	}
@@ -111,7 +105,7 @@ export const productReducer = (state = initialState, {type, payload }) => {
 
 <br />
 
-Agora, combinando todos as possíveis unidades de reducers existentes na aplicação em um objeto Redux do tipo combinedReducers:
+Agora, reunindo todas as possíveis unidades de reducers existentes na aplicação em um objeto Redux do tipo combinedReducers:
 
 <br />
 
@@ -125,11 +119,13 @@ import { productReducer } from './productReducer';
 const reducers = combineReducers({
 	allProducts: productReducer
 });
+
+export default reducers;
 ```
 
 <br />
 
-Finalmente, trazendo os reducers combinados para a criação da Store:
+A seguir é preciso trazer os reducers combinados para a criação da Store:
 
 <br />
 
@@ -140,11 +136,39 @@ import { createStore } from 'redux';
 import reducers from './reducers/index';
 
 // combined reducers + state
-const store = createStore(reducers, {});
+const store = createStore(reducers, {
+	...state
+});
 
 export default store;
 ```
 
+<br />
+
+Finalmente, é preciso ligar o Redux à aplicação do React-JS, sendo que isto é feito com o uso de o componente Provider da biblioteca 'react-redux', que vai envelopar o componente principal App.js da aplicação e vai passar a Store criada como props:
+
+
+<br />
+
+```
+...outras importações...
+
+import { Provider } from 'react-redux';
+
+import store from './redux/store';
+
+
+ReactDOM.render(
+  <React.StrictMode>
+    <Provider store={store} >
+			<App />
+		</Provider>
+  </React.StrictMode>,
+  document.getElementById('root')
+);
+
+...outros scripts...
+```
 
 <br />
 
