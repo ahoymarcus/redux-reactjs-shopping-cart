@@ -7,15 +7,16 @@ import alienImage from '../images/run-for-your-life-large.jpg';
 
 
 const Wrapper = styled.div`
-	background-color: white;
+	background-color: hsl(210deg 45% 26% / 74%);
 	min-height: 600px;
+	
 `;
 
 const Image = styled.img`
 	display: block;
-	width: 50%;
-	height: 300px;
-	margin: 40px auto 25px;
+	width: 60%;
+	height: 240px;
+	margin:80px auto 25px;
 `;
 
 const SectionInfo = styled.div`
@@ -50,9 +51,10 @@ const Error = () => {
 	
 	
 	return (
-		<Wrapper>
-			<Image src={alienImage} alt="alien image" />
+		<Wrapper className="main-section">
+			
 			<SectionInfo>
+				<Image src={alienImage} alt="alien image" />
 				<H2>404 - Página não encontrada</H2>
 				<P>Hora de retornar!</P>
 				<BtnRedirect>

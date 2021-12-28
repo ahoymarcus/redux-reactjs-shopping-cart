@@ -1,14 +1,16 @@
+import React from 'react';
+
 
 
 const Header = () => {
 	
 	
 	return (
-		<div className="ui fixed menu">
-			<div className="ui container center">
+		<nav className="navbar">
+			<div >
 				<h1>BlazingShop</h1>
 			</div>
-		</div>
+		</nav>
 	);
 };
 
