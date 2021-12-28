@@ -28,25 +28,14 @@ Conjunto de projetos de frontend inspirados na apresentação do professor **Joh
 
 <br />
 
-Abaixo temos o sistema de pastas para os componentes do Redux:
+### Aqui podemos ver o sistema de pastas para os componentes do Redux:
 
-<br />
-
-
-./src
-	./redux
-		./actions
-			productActions.js
-		./constants
-		./reducers
-			index.js
-			productReducer.js
-		store.js
+![Abaixo temos o sistema de pastas para os componentes do Redux](/public/images/estrutura-de-pastas-para-os-componentes-do-redux.png)
 
 
 <br />
 
-Agora, cariando um módulo com constantes para definir os tipos de actions aceitas. No caso temos 03:
+Agora, criando um módulo com constantes para definir os tipos de actions aceitas. No caso temos 03:
 
 <br />
 
@@ -60,7 +49,7 @@ export const ActionTypes = {
 
 <br />
 
-Aqui, a definição das actions para este app:
+E definindo as actions para este app:
 
 - Set Products: renderiza produtos 
 - Selected Products: produto selecionado pelo usuário
@@ -85,6 +74,75 @@ export const selectedProduct = (product) => {
 		payload: product,
 	};
 };
+```
+
+<br />
+
+Definindo um reducer individualmente:
+
+```
+import { ActionTypes } from '../constants/action-types';
+
+
+const initialState = {
+	products: [{
+		id: 1,
+		title: 'Dipesh',
+		category: 'programmer'
+	}],
+};
+
+
+export const productReducer = (state = initialState, {type, payload }) => {
+	switch (type) {
+		case ActionTypes.SET_PRODUCTS:
+			return state;
+		case SELECTED_PRODUCT:
+		
+			break;
+		case REMOVE_SELECTED_PRODUCT:
+		
+			break;
+		default:
+			return state;
+	}
+};
+```
+
+<br />
+
+Agora, combinando todos as possíveis unidades de reducers existentes na aplicação em um objeto Redux do tipo combinedReducers:
+
+<br />
+
+```
+import { combineReducers } from 'redux';
+
+// reducers items
+import { productReducer } from './productReducer';
+
+
+const reducers = combineReducers({
+	allProducts: productReducer
+});
+```
+
+<br />
+
+Finalmente, trazendo os reducers combinados para a criação da Store:
+
+<br />
+
+```
+import { createStore } from 'redux';
+
+// combined reducers
+import reducers from './reducers/index';
+
+// combined reducers + state
+const store = createStore(reducers, {});
+
+export default store;
 ```
 
 
