@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
 
-import ProductComponent from './ProductComponent';
+import ProductComponent from '../containers/ProductComponent';
 
 
 
