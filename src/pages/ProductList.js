@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
-import { useSelector } from 'react-redux';
 import axios from 'axios';
+import { useSelector, useDispatch } from 'react-redux';
 
+import { setProducts } from '../redux/actions/productActions';
 import ProductComponent from '../containers/ProductComponent';
 
 
@@ -12,6 +13,9 @@ const ProductList = () => {
 	*/
 	const products = useSelector((state) => state);
 	//console.log(products);
+	
+	const dispatch = useDispatch();
+	
 		
 	const fetchProducts = async () => {
 		const response = await axios
@@ -21,6 +25,9 @@ const ProductList = () => {
 			});
 			
 			console.log(response);
+			
+			// Dispatch dados para a Store
+			dispatch(setProducts(response.data));
 	};
 	
 	

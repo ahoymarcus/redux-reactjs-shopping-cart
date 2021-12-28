@@ -11,7 +11,7 @@ const ProductComponent = () => {
 	const products = useSelector((state) => state.allProducts.products);
 	console.log(products);
 	
-	const { id, title } = products[0];
+	//const { id, title } = products[0];
 	
 	
 	return (
@@ -20,7 +20,7 @@ const ProductComponent = () => {
 				<img className="product-image" />
 				<div className="product-content">
 					<div className="product-header">
-						<h3>{title}</h3>
+						<h3></h3>
 					</div>
 				</div>
 			</article>
