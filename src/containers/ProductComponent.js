@@ -14,11 +14,14 @@ const ProductComponent = () => {
 		
 		return (
 			<article key={index} className="product-card">
-				<img className="product-image" />
+				<div className="product-image-container">
+					<img className="product-image" src={image} alt={`product ${title}`} />
+				</div>
 				<div className="product-content">
 					<div className="product-header">
-						<h3>{product.title}</h3>
-						<p>${product.price}</p>
+						<h4>{product.title}</h4>
+						<h4>${product.price}</h4>
+						<p>{category}</p>
 					</div>
 				</div>
 			</article>
