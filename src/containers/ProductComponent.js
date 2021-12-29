@@ -34,7 +34,7 @@ const ProductComponent = () => {
 	
 	
 	return (
-		<div className="product-container">
+		<div className="products-container">
 			{renderList}
 		</div>
 	);
