@@ -3,7 +3,10 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { selectedProduct } from '../redux/actions/productActions';
+import { 
+	selectedProduct, 
+	removeSelectedProduct 
+} from '../redux/actions/productActions';
 
 
 const ProductDetail = () => {
@@ -30,6 +33,11 @@ const ProductDetail = () => {
 	
 	useEffect(() => {
 		if (productId && productId !== '') fetchProductDetails();
+		
+		// Clean up for destroying the old state
+		return () => {
+			dispatch(removeSelectedProduct());
+		};
 	}, [productId]);
 	
 	
