@@ -6,7 +6,7 @@ import { setProducts } from '../redux/actions/productActions';
 
 // components
 import ProductComponent from '../containers/ProductComponent';
-
+import Loading from '../components/Loading';
 
 
 
@@ -16,9 +16,17 @@ const ProductList = () => {
 	*/
 	const products = useSelector((state) => state.allProducts.products);
 	const dispatch = useDispatch();
-	//console.log(products);
+	console.log(products.length);
 	
 	
+	const renderComponents = () => {
+		if (Object.keys(products).length === 0) {
+			return <Loading />
+		} 
+		else {
+			return <ProductComponent />;
+		}
+	};
 
 	
 	const fetchProducts = async () => {
@@ -40,11 +48,15 @@ const ProductList = () => {
 	}, []);
 	
 	
+	// useEffect(() => {
+		// renderComponents();
+	// }, [products]);
+	
 	
 	return (
 		<section className="main-section">
-			<div className="products-list-container">
-				<ProductComponent />;
+			<div className="products-list-container">		
+				{renderComponents()}
 			</div>
 		</section>
 	);
