@@ -243,19 +243,7 @@ const dispatch = useDispatch();
 
 <br />
 
-```
 
-```
-
-<br />
-
-Já :
-
-<br />
-
-```
-
-```
 
 <br />
 <br />
