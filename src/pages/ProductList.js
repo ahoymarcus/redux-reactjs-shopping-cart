@@ -32,7 +32,7 @@ const ProductList = () => {
 
 	const fetchProducts = async () => {
 		const response = await axios
-			.get('http://fakestoreapi.com/products')
+			.get('https://fakestoreapi.com/products')
 			.catch((err) => {
 				console.log("Err", err);
 			});
