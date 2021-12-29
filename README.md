@@ -2,13 +2,21 @@
 
 <br />
 
-O .:[^1]
+O projeto cria um app com React-JS que consome de uma API pública de produtos de loja e renderiza os itens numa página web de Shopping Cart.:[^1]
 
 <br />
 
+Como funcionalidades especiais, o app utiliza Redux para gerenciar o estado geral da aplicação e React-redux para definir a comunicação da aplicação com a Store criada para os estados.
 
 
-Finalmente, o app Cart pode ainda fazer requisições HTTP para receber dados de APIs da web.
+<br />
+
+Ademais, o app usa React-router-dom para criar um sistema de roteamento de páginas no frontend, incluindo o uso de captura de parámetros de URL para a renderização de uma página de detalhe de produto a partir de ID passado no endereço. 
+
+
+<br />
+
+Finalmente, o app Cart pode ainda fazer requisições HTTP usando Axios para receber os dados de APIs da web.
 
 <br />
 
@@ -41,7 +49,7 @@ Dependências:
 
 <br />
 
-Agora, criando um módulo com constantes para definir os tipos de actions aceitas para o reducer de produtos. No caso temos 03:
+Agora, criando um módulo com constantes para separar a definição de todos os tipos de **Actions** aceitas pelo sistema. No caso temos 03:
 
 <br />
 
@@ -55,11 +63,11 @@ export const ActionTypes = {
 
 <br />
 
-E definindo as actions para este app:
+A seguir, temos a definição do módulo para as **Actions** propriamente ditas:
 
-- Set Products: renderiza produtos 
-- Selected Products: produto selecionado pelo usuário
-- Remove Selected Product: para retirar do carrinho produtos discartados
+- Set Products 
+- Selected Products
+- Remove Selected Product
 
 
 <br />
@@ -74,6 +82,7 @@ export const setProducts = (products) => {
 	};
 };
 
+
 export const selectedProduct = (product) => {
 	return {
 		type: ActionTypes.SELECTED_PRODUCT,
@@ -84,25 +93,30 @@ export const selectedProduct = (product) => {
 
 <br />
 
-Definindo um reducer individualmente, no caso o reducer para produtos:
+Depois de definir as Actions, são criados os **Reducers** para as actions:
 
 ```
 import { ActionTypes } from '../constants/action-types';
 
 
 const initialState = {
-	products: [{
-		id: 1,
-		title: 'Dipesh',
-		category: 'programmer'
-	}],
+	products: [],
 };
-
 
 export const productReducer = (state = initialState, {type, payload }) => {
 	switch (type) {
 		case ActionTypes.SET_PRODUCTS:
+			return {...state, products: payload };
+		default:
 			return state;
+	}
+};
+
+
+export const selectedProductReducer = (state = {}, { type, payload }) => {
+	switch (type) {
+		case ActionTypes.SELECTED_PRODUCT:
+			return {...state, ...payload};
 		default:
 			return state;
 	}
@@ -111,7 +125,7 @@ export const productReducer = (state = initialState, {type, payload }) => {
 
 <br />
 
-Agora, reunindo todas as possíveis unidades de reducers existentes na aplicação em um objeto Redux do tipo combinedReducers:
+Agora, os **Reducers** criados na aplicação são reunidos em um objeto Redux do tipo **combinedReducers**:
 
 <br />
 
@@ -119,11 +133,11 @@ Agora, reunindo todas as possíveis unidades de reducers existentes na aplicaç�
 import { combineReducers } from 'redux';
 
 // reducers items
-import { productReducer } from './productReducer';
-
+import { productReducer, selectedProductReducer } from './productReducer';
 
 const reducers = combineReducers({
-	allProducts: productReducer
+	allProducts: productReducer,
+	product: selectedProductReducer
 });
 
 export default reducers;
@@ -131,27 +145,29 @@ export default reducers;
 
 <br />
 
-A seguir é preciso trazer os reducers combinados para a criação da Store:
+A seguir é preciso trazer os reducers combinados para a criação da **Store**:
 
 <br />
 
 ```
 import { createStore } from 'redux';
 
-// combined reducers
+// reducers
 import reducers from './reducers/index';
 
 // combined reducers + state
-const store = createStore(reducers, {
-	...state
-});
+const store = createStore(
+	reducers, 
+	{}, 
+	window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+);
 
 export default store;
 ```
 
 <br />
 
-Finalmente, é preciso ligar o Redux à aplicação do React-JS, sendo que isto é feito com o uso de o componente Provider da biblioteca 'react-redux', que vai envelopar o componente principal App.js da aplicação e vai passar a Store criada como props:
+Após ser construída a estrutura do Redux é preciso ligá-lo à aplicação do React-JS, sendo que isto é feito com o uso de o componente **Provider** da biblioteca 'react-redux', que vai envelopar o componente principal App.js da aplicação e vai passar a Store criada como props:
 
 
 <br />
@@ -174,6 +190,28 @@ ReactDOM.render(
 );
 
 ...outros scripts...
+```
+
+<br />
+
+Finalmente, dentrol da aplicação, a comunicação entre os componentes e a Store é feita principalmente com Hooks da biblioteca **react-redux**:
+
+- useSelector
+
+<br />
+
+```
+const products = useSelector((state) => state.allProducts.products);
+```
+
+<br />
+
+- useDispatch
+
+<br />
+
+```
+const dispatch = useDispatch();
 ```
 
 <br />

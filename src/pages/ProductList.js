@@ -19,6 +19,7 @@ const ProductList = () => {
 	console.log(products.length);
 	
 	
+	
 	const renderComponents = () => {
 		if (Object.keys(products).length === 0) {
 			return <Loading />
@@ -28,7 +29,7 @@ const ProductList = () => {
 		}
 	};
 
-	
+
 	const fetchProducts = async () => {
 		const response = await axios
 			.get('http://fakestoreapi.com/products')
@@ -47,10 +48,6 @@ const ProductList = () => {
 		fetchProducts();
 	}, []);
 	
-	
-	// useEffect(() => {
-		// renderComponents();
-	// }, [products]);
 	
 	
 	return (

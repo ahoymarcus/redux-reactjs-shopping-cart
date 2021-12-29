@@ -22,9 +22,9 @@ function App() {
  
   return (
     <div className="app">
-			<Header />
+			
 			<Router>
-				
+				<Header />
 				<Routes>
 					<Route path="/" element={<ProductList />} />
 					<Route path="/product/:productId" element={<ProductDetail />} />
