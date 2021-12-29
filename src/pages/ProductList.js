@@ -1,9 +1,12 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { setProducts } from '../redux/actions/productActions';
+
+// components
 import ProductComponent from '../containers/ProductComponent';
+
 
 
 
@@ -11,12 +14,13 @@ const ProductList = () => {
 	/*
 		Atenção: acessando o estado da aplicação diretamente com o react-redux.....
 	*/
-	const products = useSelector((state) => state);
+	const products = useSelector((state) => state.allProducts.products);
+	const dispatch = useDispatch();
 	//console.log(products);
 	
-	const dispatch = useDispatch();
 	
-		
+
+	
 	const fetchProducts = async () => {
 		const response = await axios
 			.get('http://fakestoreapi.com/products')
@@ -27,7 +31,7 @@ const ProductList = () => {
 			console.log(response);
 			
 			// Dispatch dados para a Store
-			dispatch(setProducts(response.data));
+			dispatch(setProducts(response.data));	
 	};
 	
 	
@@ -36,10 +40,11 @@ const ProductList = () => {
 	}, []);
 	
 	
+	
 	return (
 		<section className="main-section">
 			<div className="products-list-container">
-				<ProductComponent />
+				<ProductComponent />;
 			</div>
 		</section>
 	);
