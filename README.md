@@ -89,6 +89,12 @@ export const selectedProduct = (product) => {
 		payload: product,
 	};
 };
+
+export const removeSelectedProduct = () => {
+	return {
+		type: ActionTypes.REMOVE_SELECTED_PRODUCT,
+	};
+};
 ```
 
 <br />
@@ -117,6 +123,8 @@ export const selectedProductReducer = (state = {}, { type, payload }) => {
 	switch (type) {
 		case ActionTypes.SELECTED_PRODUCT:
 			return {...state, ...payload};
+		case ActionTypes.REMOVE_SELECTED_PRODUCT:
+			return {};
 		default:
 			return state;
 	}
@@ -216,9 +224,9 @@ const dispatch = useDispatch();
 
 <br />
 
-### I:
+### Imagem da vitrine de produtos criada pelo App Redux Shop:
 
-![Imagem do app Cart mostrando o carrinho de compra esvaziado dos itens](/public/images/)
+![Imagem da vitrine de produtos criada pelo App Redux Shop](/public/images/redux-reactjs-shopping-cart-01.png)
 
 
 
@@ -227,9 +235,9 @@ const dispatch = useDispatch();
 
 <br />
 
-### I:
+### Imagem da página de detales do produto selecionado renderizada pelo App Redux Shop:
 
-![Imagem do app Cart mostrando o carrinho de compra esvaziado dos itens](/public/images/)
+![Imagem da página de detales do produto selecionado renderizada pelo App Redux Shop](/public/images/redux-reactjs-shopping-cart-02.png)
 
 
 

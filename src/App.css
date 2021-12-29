@@ -188,6 +188,7 @@ nav.navbar a {
 
 .product-detail-category {
 	display: inline;
+	color: red;
 	background-color: #cfb53378;
 	padding: 4px 6px;
 	border-radius: 2px;
@@ -207,7 +208,14 @@ nav.navbar a {
 	border-radius: 2px;
 	display: inline;
 	background-color: #cfb53378;
+	font-weight: bold;
 }
+.add-btn:hover {
+	background-color: transparent;
+	border: 1px solid #cfb53378;
+	cursor: pointer;
+}
+
 
 
 @media only screen and (min-width: 930px) {
@@ -219,9 +227,7 @@ nav.navbar a {
 		display: block;
 		margin-top: auto;
 		margin-bottom: auto;
-		
 	}
-
 }
 
 
