@@ -202,7 +202,7 @@ ReactDOM.render(
 
 <br />
 
-Finalmente, dentrol da aplicação, a comunicação entre os componentes e a Store é feita principalmente com Hooks da biblioteca **react-redux**:
+Finalmente, dentro da aplicação, a comunicação entre os componentes e a Store é feita principalmente com Hooks da biblioteca **react-redux**:
 
 - useSelector
 
